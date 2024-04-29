@@ -3,6 +3,6 @@ const findAllGames = require("../middlewares/games");
 
 const gamesRouter = require("express").Router();
 
-gamesRouter.get("/games", findAllGames, sendAllGames)
+gamesRouter.get("/games", findAllGames, sendAllGames);
 
 module.exports = gamesRouter;
