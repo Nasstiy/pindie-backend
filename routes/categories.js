@@ -1,8 +1,29 @@
-const sendAllCategories = require("../controllers/categoties");
-const findAllCategories = require("../middlewares/categories");
+const {
+  sendAllCategories,
+  sendCategoryById,
+  sendCategoryCreated,
+  sendCategoryDeleted,
+  sendCategoryUpdated,
+} = require("../controllers/categoties");
+const {
+  findAllCategories,
+  findCategoryById,
+  createCategory,
+  deleteCategory,
+  updateCategory,
+} = require("../middlewares/categories");
 
-const categoriesRouterRouter = require("express").Router();
+const categoriesRouter = require("express").Router();
 
-categoriesRouterRouter.get("/categories", findAllCategories, sendAllCategories);
+categoriesRouter.get("/categories", findAllCategories, sendAllCategories);
+categoriesRouter.get(
+  "/categories/:id",
+  findAllCategories,
+  findCategoryById,
+  sendCategoryById
+);
+categoriesRouter.post("/categories", createCategory, sendCategoryCreated);
+categoriesRouter.delete("/categories/:id", deleteCategory, sendCategoryDeleted);
+categoriesRouter.put("/categories/:id", findCategoryById, updateCategory, sendCategoryUpdated);
 
-module.exports = categoriesRouterRouter;
+module.exports = categoriesRouter;
