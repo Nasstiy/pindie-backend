@@ -7,6 +7,7 @@ const gamesRouter = require('./routes/games');
 const categoriesRouterRouter = require('./routes/categories');
 
 const connectToDatabase = require('./database/connect');
+const apiRouter = require('./routes/apiRouter');
 
 const PORT = 3000;
 const app = express();
@@ -16,9 +17,7 @@ connectToDatabase();
 app.use(
   bodyParser.json(),
   express.static(path.join(__dirname, 'public')),
-  usersRouter, 
-  gamesRouter, 
-  categoriesRouterRouter
+  apiRouter
 );
 
 app.listen(PORT, () => {
