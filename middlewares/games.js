@@ -14,6 +14,7 @@ const findAllGames = async (req, res, next) => {
   });
   next();
 };
+
 const findGameById = async (req, res, next) => {
   try {
     req.game = await games
@@ -26,6 +27,7 @@ const findGameById = async (req, res, next) => {
     res.status(404).send(JSON.stringify({ message: "Игра не найдена" }));
   }
 };
+
 const checkEmptyFields = async (req, res, next) => {
   if (req.isVoteRequest) {
     next();
@@ -44,8 +46,9 @@ const checkEmptyFields = async (req, res, next) => {
     next();
   }
 };
+
 const checkIfCategoriesAvaliable = async (req, res, next) => {
-  if(req.isVoteRequest) {
+  if (req.isVoteRequest) {
     next();
     return;
   }
@@ -58,6 +61,7 @@ const checkIfCategoriesAvaliable = async (req, res, next) => {
     next();
   }
 };
+
 const checkIfUsersAreSafe = async (req, res, next) => {
   if (!req.body.users) {
     next();
@@ -77,6 +81,7 @@ const checkIfUsersAreSafe = async (req, res, next) => {
     );
   }
 };
+
 const checkIsGameExists = async (req, res, next) => {
   const isInArray = req.categoriesArray.find((game) => {
     return req.body.name === game.name;
@@ -90,12 +95,14 @@ const checkIsGameExists = async (req, res, next) => {
     next();
   }
 };
+
 const checkIsVoteRequest = async (req, res, next) => {
   if (Object.keys(req.body).length === 1 && req.body.users) {
     req.isVoteRequest = true;
   }
   next();
 };
+
 const createGame = async (req, res, next) => {
   console.log("POST /games");
   try {
@@ -118,6 +125,7 @@ const deleteGame = async (req, res, next) => {
     res.status(400).send(JSON.stringify({ message: "Ошибка удаления игры" }));
   }
 };
+
 const updateGame = async (req, res, next) => {
   try {
     req.game = await games.findByIdAndUpdate(req.params.id, req.body);
