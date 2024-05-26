@@ -1,6 +1,7 @@
-const allowedCors = ["https://localhost:3000"];
+const allowedCors = ["http://localhost:3000", "http://localhost:3001", "https://pindie-frontend-nasty.nomoredomainswork.ru/"];
 function cors(req, res, next) {
   const { origin } = req.headers;
+  console.log(origin)
 
   if (allowedCors.includes(origin)) {
     res.header("Access-Control-Allow-Origin", origin);
