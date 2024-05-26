@@ -40,6 +40,6 @@ usersRouter.put(
   checkAuth,
   updateUser,
   sendUserUpdated
-);
+)
 
 module.exports = usersRouter;
